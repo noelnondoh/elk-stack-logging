@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: ELK-STACK-LOGGING
+
+server:
+  port: 9898
+
+logging:
+  file: C:/Users/root/.elastic/elk-stack.log
