@@ -1,0 +1,6 @@
+version: '3'
+services:
+  spring-app:
+    image: elk-spring-boot:latest
+    ports:
+      - "9898:9898"
