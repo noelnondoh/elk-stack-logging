@@ -1,0 +1,13 @@
+# Service to expose the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-getuser
+spec:
+  selector:
+    app: java-getuser
+  ports:
+    - protocol: TCP
+      port: 80  # The port that clients will use to access the service
+      targetPort: 9898  # The port the service forwards traffic to in the pods
+  type: LoadBalancer  # Use LoadBalancer if you want to expose externally
