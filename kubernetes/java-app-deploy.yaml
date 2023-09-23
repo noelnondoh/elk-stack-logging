@@ -1,0 +1,35 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-getuser
+spec:
+  replicas: 2  # Number of desired replicas
+  selector:
+    matchLabels:
+      app: java-getuser
+  template:
+    metadata:
+      labels:
+        app: java-getuser
+    spec:
+      containers:
+        - name: java-getuser
+          image: noelnondoh/java-getuser:latest  # Replace with your Docker image
+          ports:
+            - containerPort: 9898  # Make sure this matches the exposed port in your Dockerfile
+
+# Service to expose the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-app-service
+spec:
+  selector:
+    app: java-getuser
+  ports:
+    - protocol: TCP
+      port: 80  # The port that clients will use to access the service
+      targetPort: 9898  # The port the service forwards traffic to in the pods
+  type: LoadBalancer  # Use LoadBalancer if you want to expose externally
+
